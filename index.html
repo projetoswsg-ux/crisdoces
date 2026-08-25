@@ -5,18 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Santto Doces | Confeitaria Artesanal & Chocolates Finos</title>
   
-  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  
-  <!-- FontAwesome for Font-Based Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- Chart.js CDN -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
   <script>
@@ -56,7 +50,6 @@
   </script>
 
   <style>
-    /* Custom Styling & Glassmorphism */
     .glass-light {
       background: rgba(255, 253, 251, 0.92);
       backdrop-filter: blur(12px);
@@ -78,7 +71,6 @@
       scrollbar-width: none;
     }
 
-    /* MANDATORY CHART CONTAINER STYLING */
     .chart-container {
       position: relative;
       width: 100%;
@@ -96,13 +88,12 @@
   </style>
 
   <!-- Chosen Palette: Celestial Warm Cream & Brigadeiro Brown (Soft Warm Cream #FAF4F0, Rich Brigadeiro Brown #26140F, Royal Gold #C59B27, Soft Rose #D98A8A) -->
-  <!-- Application Structure Plan: A complete interactive e-commerce and showcase platform built specifically for "Santto Doces" by Tailise Reis & Cristiano Ferreira. Structure: 1. Header with custom halo logo badge and WhatsApp shopping cart status; 2. Hero Section featuring real photos of Santto Doces delicacies, taglines and quick order access; 3. Interactive Founders Story section introducing Tailise & Cristiano; 4. Interactive Flavor Profile & Gift Matcher Quiz to guide users to the perfect box (Brigadeiros, Sculpted Chocolates, Stuffed Bars, Meringue Tart); 5. Interactive Sensory Radar Chart (Chart.js Canvas) analyzing taste/visual traits of Santto Doces creations; 6. Interactive Product Catalog displaying real uploaded photos with search, category filter, and modal details; 7. Interactive Delivery Guarantee & Thermal Packaging simulator; 8. Dynamic WhatsApp Cart slide-over drawer with personalized handwritten gift message generator. -->
+  <!-- Application Structure Plan: A complete interactive e-commerce and showcase platform built specifically for "Santto Doces" by Tailise Reis & Cristiano Ferreira. Structure: 1. Header with custom logo badge and WhatsApp shopping cart status; 2. Hero Section featuring live images of Santto Doces delicacies, taglines and quick order access; 3. Interactive Founders Story section introducing Tailise & Cristiano; 4. Interactive Flavor Profile & Gift Matcher Quiz to guide users to the perfect box (Brigadeiros, Sculpted Chocolates, Stuffed Bars, Meringue Tart); 5. Interactive Sensory Radar Chart (Chart.js Canvas) analyzing taste/visual traits of Santto Doces creations; 6. Interactive Product Catalog displaying uploaded photo assets with search, category filter, and modal details; 7. Interactive Delivery Guarantee & Thermal Packaging simulator; 8. Dynamic WhatsApp Cart slide-over drawer with personalized handwritten gift message generator. -->
   <!-- Visualization & Content Choices: 1. Radar Chart (Chart.js Canvas): Visualizes parameters like Amargor, Doçura, Cremosidade, Crocância, Apresentação Visual for products. Dynamic JS dropdown interaction. 2. Interactive Gift Matcher Quiz: Step-by-step decision tree matching users to specific real boxes. 3. Interactive Catalog Grid: Instant filtering, photo previews, modal display with pairing notes. 4. Interactive WhatsApp Cart: State-managed cart with custom note textarea creating instant direct WhatsApp order link. NO SVG graphic tags or Mermaid JS used. -->
   <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
 </head>
 <body class="bg-santto-50 text-santto-900 font-sans antialiased selection:bg-dourado-light selection:text-santto-950">
 
-  <!-- TOP ANNOUNCEMENT BAR -->
   <div class="bg-santto-900 text-dourado-light text-xs font-medium py-2.5 px-4 text-center border-b border-dourado/20">
     <p class="flex items-center justify-center gap-2">
       <i class="fa-solid fa-halo text-dourado"></i>
@@ -110,11 +101,9 @@
     </p>
   </div>
 
-  <!-- NAVIGATION BAR -->
   <header class="sticky top-0 z-40 glass-light transition-all duration-300">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
       
-      <!-- Brand Logo -->
       <a href="#" class="flex items-center gap-3 group">
         <div class="w-12 h-12 rounded-full bg-santto-100 border-2 border-dourado/40 p-1 flex items-center justify-center shadow-md group-hover:border-dourado transition">
           <div class="relative flex items-center justify-center">
@@ -128,7 +117,6 @@
         </div>
       </a>
 
-      <!-- Navigation Links -->
       <nav class="hidden lg:flex items-center space-x-7 text-xs font-semibold tracking-wider uppercase text-santto-800">
         <a href="#cardapio" class="hover:text-dourado transition">Nosso Cardápio</a>
         <a href="#historia" class="hover:text-dourado transition">Quem Somos</a>
@@ -137,7 +125,6 @@
         <a href="#entrega" class="hover:text-dourado transition">Entrega</a>
       </nav>
 
-      <!-- Cart Button & Quick CTA -->
       <div class="flex items-center space-x-4">
         <button onclick="toggleCart()" class="relative p-2 text-santto-900 hover:text-dourado transition focus:outline-none" title="Ver Sacola">
           <i class="fa-solid fa-bag-shopping text-2xl text-santto-800"></i>
@@ -151,12 +138,10 @@
     </div>
   </header>
 
-  <!-- 1. HERO SECTION -->
   <section class="relative py-16 lg:py-24 bg-gradient-to-b from-santto-100 via-santto-50 to-white overflow-hidden">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         
-        <!-- Hero Text Content -->
         <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
           <div class="inline-flex items-center gap-2 bg-rosa-light text-rosa-dark border border-rosa/30 px-4 py-1.5 rounded-full text-xs font-bold tracking-wide uppercase shadow-sm">
             <i class="fa-solid fa-heart"></i>
@@ -199,29 +184,25 @@
           </div>
         </div>
 
-        <!-- Hero Photo Showcase Grid -->
         <div class="lg:col-span-5 relative">
           <div class="relative mx-auto max-w-md lg:max-w-none">
             
-            <!-- Main Featured Image (Torta & Brigadeiros Box) -->
             <div class="rounded-3xl overflow-hidden border-4 border-white shadow-2xl gold-glow bg-white p-2 transform rotate-1 hover:rotate-0 transition duration-500">
-              <img src="IMG-20260825-WA0165.jpg" alt="Caixa Luxo Torta Meringue e Brigadeiros Santto Doces" class="w-full h-80 sm:h-96 object-cover rounded-2xl">
+              <img src="https://crisdoces-self.vercel.app/1%20(1).jpeg" onerror="this.onerror=null; this.src='https://crisdoces-self.vercel.app/1%20(1).jpeg';" alt="Caixa Luxo Torta Meringue e Brigadeiros Santto Doces" class="w-full h-80 sm:h-96 object-cover rounded-2xl">
               <div class="p-4 text-center">
                 <span class="font-script text-2xl text-dourado font-bold">Caixa Especial Presente</span>
                 <p class="text-xs text-santto-700">Torta de Merengue Tostado com Seleção Gourmet</p>
               </div>
             </div>
 
-            <!-- Floating Badge 1 (Stuffed Egg Detail) -->
             <div class="absolute -bottom-6 -left-6 bg-white p-2 rounded-2xl shadow-xl border border-santto-200 hidden sm:flex items-center gap-3 max-w-[220px]">
-              <img src="IMG-20260825-WA0167.jpg" alt="Ovo Cremosíssimo Recheado" class="w-14 h-14 object-cover rounded-xl">
+              <img src="https://crisdoces-self.vercel.app/1%20(2).jpeg" onerror="this.onerror=null; this.src='https://crisdoces-self.vercel.app/1%20(1).jpeg';" alt="Ovo Cremosíssimo Recheado" class="w-14 h-14 object-cover rounded-xl">
               <div>
                 <span class="text-[11px] font-bold text-santto-900 block leading-tight">Recheios Ultra Cremosos</span>
                 <span class="text-[9px] text-dourado font-semibold uppercase">Casca Crocante</span>
               </div>
             </div>
 
-            <!-- Floating Badge 2 (Heart Box) -->
             <div class="absolute -top-6 -right-4 bg-santto-900 text-white p-3 rounded-2xl shadow-xl hidden sm:block text-center">
               <i class="fa-solid fa-star text-dourado text-sm mb-1"></i>
               <span class="block text-[10px] font-bold uppercase tracking-wider text-dourado-light">Receita Exclusiva</span>
@@ -235,7 +216,6 @@
     </div>
   </section>
 
-  <!-- 2. QUEM SOMOS / FUNDADORES -->
   <section id="historia" class="py-20 bg-white border-y border-santto-200">
     <div class="max-w-5xl mx-auto px-4 sm:px-6">
       <div class="bg-santto-100/70 border border-santto-200 rounded-3xl p-8 sm:p-12 shadow-sm text-center relative overflow-hidden">
@@ -258,7 +238,6 @@
     </div>
   </section>
 
-  <!-- 3. MONTE SEU PRESENTE / QUIZ DE PALADAR INTERATIVO -->
   <section id="quiz" class="py-20 bg-gradient-to-b from-santto-50 via-santto-100 to-santto-50">
     <div class="max-w-4xl mx-auto px-4 sm:px-6">
       <div class="text-center mb-10">
@@ -269,7 +248,6 @@
 
       <div class="bg-white border border-santto-200 rounded-3xl p-6 sm:p-10 shadow-xl relative">
         
-        <!-- Step 1 -->
         <div id="quiz-step-1" class="space-y-6">
           <div class="flex items-center justify-between text-xs text-dourado font-bold uppercase tracking-widest border-b border-santto-200 pb-3">
             <span>Passo 1 de 3</span>
@@ -292,7 +270,6 @@
           </div>
         </div>
 
-        <!-- Step 2 -->
         <div id="quiz-step-2" class="space-y-6 hidden">
           <div class="flex items-center justify-between text-xs text-dourado font-bold uppercase tracking-widest border-b border-santto-200 pb-3">
             <span>Passo 2 de 3</span>
@@ -315,7 +292,6 @@
           </div>
         </div>
 
-        <!-- Step 3 -->
         <div id="quiz-step-3" class="space-y-6 hidden">
           <div class="flex items-center justify-between text-xs text-dourado font-bold uppercase tracking-widest border-b border-santto-200 pb-3">
             <span>Passo 3 de 3</span>
@@ -338,7 +314,6 @@
           </div>
         </div>
 
-        <!-- Result -->
         <div id="quiz-result" class="space-y-6 hidden text-center">
           <div class="inline-flex items-center gap-2 bg-dourado/10 border border-dourado/30 text-dourado-dark text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-widest">
             <i class="fa-solid fa-sparkles"></i> Recomendação Celestial Criada
@@ -359,7 +334,6 @@
     </div>
   </section>
 
-  <!-- 4. ANÁLISE SENSORIAL RADAR (Chart.js Interactive) -->
   <section id="analise" class="py-20 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
@@ -388,7 +362,6 @@
           </div>
         </div>
 
-        <!-- Chart Container wrapper (Strict Requirements Applied) -->
         <div class="lg:col-span-7 bg-santto-50 border border-santto-200 p-6 rounded-3xl shadow-sm">
           <h3 class="text-center font-serif text-lg font-bold text-santto-900 mb-4">Dimensões Gustativas Santto Doces</h3>
           <div class="chart-container">
@@ -400,7 +373,6 @@
     </div>
   </section>
 
-  <!-- 5. CARDÁPIO DE PRODUTOS / CATALOGO INTERATIVO -->
   <section id="cardapio" class="py-20 bg-santto-100/50 border-t border-santto-200">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
@@ -411,7 +383,6 @@
           <p class="text-santto-700 text-sm mt-2 max-w-xl">Produzidos sob encomenda com ingredientes nobres e embalagens exclusivas.</p>
         </div>
         
-        <!-- Search & Category Filters -->
         <div class="flex flex-col sm:flex-row gap-3">
           <div class="relative">
             <input type="text" id="catalog-search" oninput="filterCatalog()" placeholder="Buscar por sabor ou produto..." class="bg-white border border-santto-200 text-santto-900 text-xs rounded-full px-4 py-2.5 pl-9 w-full sm:w-60 focus:border-dourado focus:outline-none shadow-sm">
@@ -427,14 +398,11 @@
         </div>
       </div>
 
-      <!-- Dynamic Product Cards Grid -->
       <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-        <!-- Javascript populated -->
       </div>
     </div>
   </section>
 
-  <!-- 6. ENTREGAS & EMBALAGEM TÉRMICA -->
   <section id="entrega" class="py-20 bg-white border-y border-santto-200">
     <div class="max-w-5xl mx-auto px-4 sm:px-6">
       <div class="bg-gradient-to-r from-santto-900 via-santto-800 to-santto-900 text-white rounded-3xl p-8 sm:p-10 shadow-xl border border-dourado/30">
@@ -474,7 +442,6 @@
     </div>
   </section>
 
-  <!-- 7. AVALIAÇÕES & DEPOIMENTOS -->
   <section class="py-20 bg-santto-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-14">
@@ -542,7 +509,6 @@
     </div>
   </section>
 
-  <!-- FOOTER -->
   <footer class="bg-santto-950 text-white border-t border-santto-800 py-12">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
@@ -596,14 +562,12 @@
     </div>
   </footer>
 
-  <!-- CART SLIDE-OVER DRAWER -->
   <div id="cart-drawer" class="fixed inset-0 z-50 overflow-hidden pointer-events-none transition-opacity duration-300 opacity-0">
     <div class="absolute inset-0 bg-santto-950/70 backdrop-blur-sm transition-opacity" onclick="toggleCart()"></div>
     
     <div class="fixed inset-y-0 right-0 max-w-full flex pl-10 pointer-events-auto">
       <div class="w-screen max-w-md bg-white border-l border-santto-200 shadow-2xl flex flex-col justify-between">
         
-        <!-- Cart Header -->
         <div class="p-6 border-b border-santto-200 bg-santto-50 flex items-center justify-between">
           <div class="flex items-center gap-3">
             <i class="fa-solid fa-bag-shopping text-santto-800 text-xl"></i>
@@ -617,12 +581,10 @@
           </button>
         </div>
 
-        <!-- Cart Items List -->
         <div id="cart-items" class="p-6 overflow-y-auto flex-grow space-y-4">
           <p class="text-xs text-santto-500 text-center py-12">Sua sacola de doces está vazia. Escolha suas delícias no cardápio!</p>
         </div>
 
-        <!-- Cart Footer & Order Form -->
         <div class="p-6 border-t border-santto-200 bg-santto-50 space-y-4">
           <div>
             <label for="gift-note" class="block text-[11px] font-bold text-santto-800 uppercase tracking-wider mb-1">
@@ -648,7 +610,6 @@
     </div>
   </div>
 
-  <!-- PRODUCT DETAIL MODAL -->
   <div id="product-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-santto-950/70 backdrop-blur-md hidden">
     <div class="bg-white border border-santto-200 rounded-3xl max-w-lg w-full p-6 relative shadow-2xl space-y-4">
       <button onclick="closeProductModal()" class="absolute top-4 right-4 text-santto-400 hover:text-santto-900 p-2">
@@ -656,7 +617,7 @@
       </button>
 
       <div class="flex flex-col sm:flex-row items-center gap-4">
-        <img id="modal-img" src="" alt="" class="w-full sm:w-32 h-32 object-cover rounded-2xl border border-santto-200 shadow-sm">
+        <img id="modal-img" src="" onerror="this.onerror=null; this.src='https://crisdoces-self.vercel.app/1%20(1).jpeg';" alt="" class="w-full sm:w-32 h-32 object-cover rounded-2xl border border-santto-200 shadow-sm">
         <div>
           <span id="modal-badge" class="text-[10px] bg-rosa-light text-rosa-dark font-bold px-2.5 py-1 rounded-full uppercase tracking-wider"></span>
           <h3 id="modal-title" class="font-serif font-bold text-xl text-santto-900 mt-1"></h3>
@@ -682,9 +643,7 @@
     </div>
   </div>
 
-  <!-- JAVASCRIPT LOGIC -->
   <script>
-    // Real Products Database matching user images
     const products = [
       {
         id: 'p1',
@@ -693,7 +652,7 @@
         badge: 'Favorito dos Namorados',
         price: 55.00,
         rating: 5.0,
-        img: 'IMG-20260825-WA0162.jpg',
+        img: 'https://crisdoces-self.vercel.app/1%20(1).jpeg',
         desc: 'Caixa vermelha em formato de coração contendo 9 brigadeiros gourmet produzidos com chocolate belga e granulado fino em escamas.',
         pairing: 'Perfeito para datas românticas, aniversários de namoro e surpresas afetivas.'
       },
@@ -704,7 +663,7 @@
         badge: 'Edição Especial Presente',
         price: 135.00,
         rating: 5.0,
-        img: 'IMG-20260825-WA0165.jpg',
+        img: 'https://crisdoces-self.vercel.app/1%20(2).jpeg',
         desc: 'Torta artesanal de merengue tostado combinada com seleção exclusiva de brigadeiros nobres e corações de chocolate branco em caixa luxo com laço de fita.',
         pairing: 'Ideal para o Dia das Mães, almoços em família e presentes de alto impacto.'
       },
@@ -715,7 +674,7 @@
         badge: 'Sucesso de Vendas',
         price: 45.00,
         rating: 4.9,
-        img: 'IMG-20260825-WA0164.jpg',
+        img: 'https://crisdoces-self.vercel.app/1%20(3).jpeg',
         desc: 'Coleção com 3 barrinhas de bombom recheadas: Chocolate Amargo com Nozes, Chocolate Branco com Frutas Vermelhas e Chocolate ao Leite em embalagens florais.',
         pairing: 'Excelente para lembranças elegantes e consumo pessoal.'
       },
@@ -726,7 +685,7 @@
         badge: 'Natal & Edição Religiosa',
         price: 98.00,
         rating: 5.0,
-        img: 'IMG-20260825-WA0166.jpg',
+        img: 'https://crisdoces-self.vercel.app/1%20(4).jpeg',
         desc: 'Escultura rica em detalhes feita em chocolate nobre com acabamento bronze-dourado comestível. Acompanha caixa festiva de presente.',
         pairing: 'Presente memorável para celebrações natalinas, batizados e momentos de fé.'
       },
@@ -737,18 +696,17 @@
         badge: 'Recheio Extra Cremoso',
         price: 78.00,
         rating: 4.9,
-        img: 'IMG-20260825-WA0167.jpg',
+        img: 'https://crisdoces-self.vercel.app/1%20(5).jpeg',
         desc: 'Casca espessa de chocolate crocante com recheio ultra cremoso de Nutella, creme de cookies e chocolate preto e branco.',
         pairing: 'Ideal para os verdadeiros amantes de recheios fartos e colheradas de pura felicidade.'
       }
     ];
 
-    // Radar Chart Data per product
     const sensoryData = {
       caixaCoracao: {
         title: 'Caixa Coração Brigadeiros Gourmet',
         desc: 'Doçura equilibrada, altíssima cremosidade no ponto de enrolar e apresentação romântica inigualável.',
-        data: [75, 95, 40, 95] // Doçura, Cremosidade, Crocância, Apresentação Visual
+        data: [75, 95, 40, 95]
       },
       caixaLuxoTorta: {
         title: 'Caixa Luxo Torta Meringue & Finos',
@@ -772,19 +730,16 @@
       }
     };
 
-    // App State
     let cart = [];
     let currentCategory = 'todos';
     let quizState = {};
     let sensoryChartInstance = null;
 
-    // Initialization
     document.addEventListener('DOMContentLoaded', () => {
       renderCatalog();
       initSensoryRadarChart();
     });
 
-    // Render Catalog
     function renderCatalog() {
       const container = document.getElementById('products-grid');
       const searchTerm = document.getElementById('catalog-search').value.toLowerCase();
@@ -809,7 +764,7 @@
         <div class="product-card group bg-white border border-santto-200 hover:border-dourado rounded-2xl overflow-hidden transition duration-300 shadow-sm flex flex-col justify-between">
           <div class="relative overflow-hidden aspect-[4/3] cursor-pointer" onclick="openProductModal('${p.id}')">
             <span class="absolute top-3 left-3 z-10 bg-santto-900 text-dourado-light text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-md">${p.badge}</span>
-            <img src="${p.img}" alt="${p.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+            <img src="${p.img}" onerror="this.onerror=null; this.src='https://crisdoces-self.vercel.app/1%20(1).jpeg';" alt="${p.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
           </div>
           <div class="p-6 flex flex-col flex-grow justify-between">
             <div>
@@ -834,7 +789,6 @@
       `).join('');
     }
 
-    // Filter Logic
     function filterCatalogCategory(category) {
       currentCategory = category;
       document.querySelectorAll('.cat-btn').forEach(btn => {
@@ -850,7 +804,6 @@
       renderCatalog();
     }
 
-    // Modal Logic
     function openProductModal(id) {
       const p = products.find(item => item.id === id);
       if (!p) return;
@@ -875,7 +828,6 @@
       document.getElementById('product-modal').classList.add('hidden');
     }
 
-    // Chart.js Radar Initialization
     function initSensoryRadarChart() {
       const ctx = document.getElementById('sensoryRadarChart').getContext('2d');
       const initial = sensoryData.caixaCoracao;
@@ -932,7 +884,6 @@
       }
     }
 
-    // Quiz Navigation
     function setQuizAnswer(key, value, nextStep) {
       quizState[key] = value;
       document.querySelectorAll('#quiz-step-1, #quiz-step-2, #quiz-step-3, #quiz-result').forEach(el => el.classList.add('hidden'));
@@ -948,15 +899,15 @@
       const descEl = document.getElementById('recommendation-desc');
       const addBtn = document.getElementById('quiz-add-btn');
 
-      let recProduct = products[0]; // Default Coracao
+      let recProduct = products[0];
       if (quizState.occasion === 'festa' || portion === 'grupo') {
-        recProduct = products[1]; // Caixa Luxo Torta
+        recProduct = products[1];
       } else if (quizState.occasion === 'especial') {
-        recProduct = products[3]; // Escultura
+        recProduct = products[3];
       } else if (quizState.flavor === 'recheado') {
-        recProduct = products[4]; // Bombom Gigante
+        recProduct = products[4];
       } else if (portion === 'individual') {
-        recProduct = products[2]; // Barrinhas
+        recProduct = products[2];
       }
 
       titleEl.innerText = recProduct.title;
@@ -976,7 +927,6 @@
       document.getElementById('quiz-step-1').classList.remove('hidden');
     }
 
-    // Shipping Info Update
     function calculateShippingInfo() {
       const region = document.getElementById('shipping-region').value;
       const tempEl = document.getElementById('thermal-temp');
@@ -994,7 +944,6 @@
       }
     }
 
-    // Cart Drawer Management
     function toggleCart() {
       const drawer = document.getElementById('cart-drawer');
       drawer.classList.toggle('opacity-0');

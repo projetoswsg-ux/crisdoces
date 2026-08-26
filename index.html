@@ -86,11 +86,6 @@
       }
     }
   </style>
-
-  <!-- Chosen Palette: Celestial Warm Cream & Brigadeiro Brown (Soft Warm Cream #FAF4F0, Rich Brigadeiro Brown #26140F, Royal Gold #C59B27, Soft Rose #D98A8A) -->
-  <!-- Application Structure Plan: A complete interactive e-commerce and showcase platform built specifically for "Santto Doces" by Tailise Reis & Cristiano Ferreira. Structure: 1. Header with custom logo badge and WhatsApp shopping cart status; 2. Hero Section featuring live images of Santto Doces delicacies, taglines and quick order access; 3. Interactive Founders Story section introducing Tailise & Cristiano; 4. Interactive Flavor Profile & Gift Matcher Quiz to guide users to the perfect box (Brigadeiros, Sculpted Chocolates, Stuffed Bars, Meringue Tart); 5. Interactive Sensory Radar Chart (Chart.js Canvas) analyzing taste/visual traits of Santto Doces creations; 6. Interactive Product Catalog displaying uploaded photo assets with search, category filter, and modal details; 7. Interactive Delivery Guarantee & Thermal Packaging simulator; 8. Dynamic WhatsApp Cart slide-over drawer with personalized handwritten gift message generator. -->
-  <!-- Visualization & Content Choices: 1. Radar Chart (Chart.js Canvas): Visualizes parameters like Amargor, Doçura, Cremosidade, Crocância, Apresentação Visual for products. Dynamic JS dropdown interaction. 2. Interactive Gift Matcher Quiz: Step-by-step decision tree matching users to specific real boxes. 3. Interactive Catalog Grid: Instant filtering, photo previews, modal display with pairing notes. 4. Interactive WhatsApp Cart: State-managed cart with custom note textarea creating instant direct WhatsApp order link. NO SVG graphic tags or Mermaid JS used. -->
-  <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
 </head>
 <body class="bg-santto-50 text-santto-900 font-sans antialiased selection:bg-dourado-light selection:text-santto-950">
 
@@ -126,10 +121,10 @@
       </nav>
 
       <div class="flex items-center space-x-4">
-        <button onclick="toggleCart()" class="relative p-2 text-santto-900 hover:text-dourado transition focus:outline-none" title="Ver Sacola">
-          <i class="fa-solid fa-bag-shopping text-2xl text-santto-800"></i>
-          <span id="cart-count" class="absolute -top-1 -right-1 bg-rosa-dark text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center border-2 border-white">0</span>
-        </button>
+        <!-- Link direto para o Instagram no cabeçalho -->
+        <a href="https://www.instagram.com/santtodoces?igsi=Z2Z2ZG1lMWlkeXc1" target="_blank" class="flex items-center gap-2 text-santto-900 hover:text-dourado transition p-2" title="Instagram Santto Doces">
+          <i class="fa-brands fa-instagram text-2xl text-santto-800"></i>
+        </a>
         <a href="#cardapio" class="hidden sm:inline-flex items-center gap-2 bg-gradient-to-r from-santto-800 to-santto-900 text-dourado-light font-bold px-5 py-2.5 rounded-full hover:shadow-lg hover:from-santto-900 hover:to-santto-950 transition duration-300 text-xs tracking-wider uppercase">
           <span>Fazer Encomenda</span>
           <i class="fa-solid fa-chevron-right text-[10px]"></i>
@@ -322,7 +317,7 @@
           <p id="recommendation-desc" class="text-sm text-santto-700 max-w-xl mx-auto">Seleção com 9 brigadeiros artesanais banhados em granulado belga puro em uma caixa em formato de coração perfeita para expressar carinho.</p>
           <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
             <button id="quiz-add-btn" class="w-full sm:w-auto bg-santto-900 hover:bg-santto-800 text-dourado-light font-bold px-8 py-3.5 rounded-full transition text-xs uppercase tracking-wider shadow-md">
-              Adicionar Sugestão ao Carrinho
+              Fazer Pedido pelo WhatsApp
             </button>
             <button onclick="resetQuiz()" class="w-full sm:w-auto text-santto-600 hover:text-santto-900 text-xs uppercase tracking-wider font-semibold">
               Refazer Perguntas
@@ -543,10 +538,10 @@
         <div>
           <h5 class="font-bold text-xs text-dourado uppercase tracking-wider mb-4">Siga a Santto Doces</h5>
           <div class="flex gap-3 mb-4">
-            <a href="#" class="w-9 h-9 rounded-full bg-santto-900 border border-santto-700 flex items-center justify-center text-white hover:text-dourado hover:border-dourado transition">
+            <a href="https://www.instagram.com/santtodoces?igsi=Z2Z2ZG1lMWlkeXc1" target="_blank" class="w-9 h-9 rounded-full bg-santto-900 border border-santto-700 flex items-center justify-center text-white hover:text-dourado hover:border-dourado transition">
               <i class="fa-brands fa-instagram text-sm"></i>
             </a>
-            <a href="#" class="w-9 h-9 rounded-full bg-santto-900 border border-santto-700 flex items-center justify-center text-white hover:text-dourado hover:border-dourado transition">
+            <a href="https://wa.me/555499699963?text=Gostaria%20de%20fazer%20um%20pedido" target="_blank" class="w-9 h-9 rounded-full bg-santto-900 border border-santto-700 flex items-center justify-center text-white hover:text-dourado hover:border-dourado transition">
               <i class="fa-brands fa-whatsapp text-sm"></i>
             </a>
           </div>
@@ -562,54 +557,7 @@
     </div>
   </footer>
 
-  <div id="cart-drawer" class="fixed inset-0 z-50 overflow-hidden pointer-events-none transition-opacity duration-300 opacity-0">
-    <div class="absolute inset-0 bg-santto-950/70 backdrop-blur-sm transition-opacity" onclick="toggleCart()"></div>
-    
-    <div class="fixed inset-y-0 right-0 max-w-full flex pl-10 pointer-events-auto">
-      <div class="w-screen max-w-md bg-white border-l border-santto-200 shadow-2xl flex flex-col justify-between">
-        
-        <div class="p-6 border-b border-santto-200 bg-santto-50 flex items-center justify-between">
-          <div class="flex items-center gap-3">
-            <i class="fa-solid fa-bag-shopping text-santto-800 text-xl"></i>
-            <div>
-              <h3 class="font-serif font-bold text-lg text-santto-900 leading-none">Sua Encomenda</h3>
-              <span class="text-[10px] text-santto-600 font-medium">Santto Doces</span>
-            </div>
-          </div>
-          <button onclick="toggleCart()" class="text-santto-500 hover:text-santto-900 p-2">
-            <i class="fa-solid fa-xmark text-lg"></i>
-          </button>
-        </div>
-
-        <div id="cart-items" class="p-6 overflow-y-auto flex-grow space-y-4">
-          <p class="text-xs text-santto-500 text-center py-12">Sua sacola de doces está vazia. Escolha suas delícias no cardápio!</p>
-        </div>
-
-        <div class="p-6 border-t border-santto-200 bg-santto-50 space-y-4">
-          <div>
-            <label for="gift-note" class="block text-[11px] font-bold text-santto-800 uppercase tracking-wider mb-1">
-              <i class="fa-solid fa-pen-nib text-dourado mr-1"></i> Mensagem para o Cartão de Presente (Opcional):
-            </label>
-            <textarea id="gift-note" rows="2" placeholder="Escreva aqui seu recado com carinho para quem vai receber..." class="w-full bg-white border border-santto-200 text-santto-900 text-xs p-2.5 rounded-xl focus:border-dourado focus:outline-none shadow-sm"></textarea>
-          </div>
-
-          <div class="flex justify-between text-sm pt-2">
-            <span class="text-santto-700">Subtotal</span>
-            <span id="cart-total" class="font-bold text-santto-900 text-base">R$ 0,00</span>
-          </div>
-
-          <p class="text-[10px] text-santto-500">O horário e a data de entrega/retirada serão combinados diretamente no WhatsApp.</p>
-
-          <button onclick="checkoutWhatsApp()" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3.5 rounded-full flex items-center justify-center gap-2 transition duration-300 text-xs tracking-wider uppercase shadow-lg">
-            <i class="fa-brands fa-whatsapp text-lg"></i>
-            <span>Enviar Pedido pelo WhatsApp</span>
-          </button>
-        </div>
-
-      </div>
-    </div>
-  </div>
-
+  <!-- Modal de Produto (sem preço e com botão direto para WhatsApp) -->
   <div id="product-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-santto-950/70 backdrop-blur-md hidden">
     <div class="bg-white border border-santto-200 rounded-3xl max-w-lg w-full p-6 relative shadow-2xl space-y-4">
       <button onclick="closeProductModal()" class="absolute top-4 right-4 text-santto-400 hover:text-santto-900 p-2">
@@ -617,11 +565,10 @@
       </button>
 
       <div class="flex flex-col sm:flex-row items-center gap-4">
-        <img id="modal-img" src="" onerror="this.onerror=null; this.src='https://crisdoces-self.vercel.app/1%20(1).jpeg';" alt="" class="w-full sm:w-32 h-32 object-cover rounded-2xl border border-santto-200 shadow-sm">
+        <img id="modal-img" src="" onerror="this.onerror=null; this.src='https://crisdoces-self.vercel.app/1%20(5).jpeg';" alt="" class="w-full sm:w-32 h-32 object-cover rounded-2xl border border-santto-200 shadow-sm">
         <div>
           <span id="modal-badge" class="text-[10px] bg-rosa-light text-rosa-dark font-bold px-2.5 py-1 rounded-full uppercase tracking-wider"></span>
           <h3 id="modal-title" class="font-serif font-bold text-xl text-santto-900 mt-1"></h3>
-          <div id="modal-price" class="text-dourado-dark font-bold text-lg mt-1 font-serif"></div>
         </div>
       </div>
 
@@ -633,26 +580,25 @@
       </div>
 
       <div class="flex gap-3 pt-2">
-        <button id="modal-add-btn" class="flex-1 bg-santto-900 hover:bg-santto-800 text-dourado-light font-bold py-3 rounded-full text-xs uppercase tracking-wider transition shadow-md">
-          Adicionar à Sacola
-        </button>
-        <button onclick="closeProductModal()" class="bg-santto-100 hover:bg-santto-200 text-santto-800 font-semibold px-5 py-3 rounded-full text-xs uppercase transition">
-          Fechar
-        </button>
+        <a id="modal-order-btn" href="https://wa.me/555499699963?text=Gostaria%20de%20fazer%20um%20pedido" target="_blank" class="flex-1 bg-santto-900 hover:bg-santto-800 text-dourado-light font-bold py-3 rounded-full text-xs uppercase tracking-wider transition shadow-md text-center">
+          Fazer Pedido
+        </a>
+        <a href="https://www.instagram.com/santtodoces?igsi=Z2Z2ZG1lMWlkeXc1" target="_blank" class="bg-santto-100 hover:bg-santto-200 text-santto-800 font-semibold px-5 py-3 rounded-full text-xs uppercase transition text-center">
+          Instagram
+        </a>
       </div>
     </div>
   </div>
 
   <script>
+    // Dados dos produtos (sem preço, pois valores foram removidos da exibição)
     const products = [
       {
         id: 'p1',
         title: 'Caixa Coração Brigadeiros Gourmet',
         category: 'caixas',
         badge: 'Favorito dos Namorados',
-        price: 55.00,
-        rating: 5.0,
-        img: 'https://crisdoces-self.vercel.app/1%20(1).jpeg',
+        img: 'https://crisdoces-self.vercel.app/1%20(5).jpeg',
         desc: 'Caixa vermelha em formato de coração contendo 9 brigadeiros gourmet produzidos com chocolate belga e granulado fino em escamas.',
         pairing: 'Perfeito para datas românticas, aniversários de namoro e surpresas afetivas.'
       },
@@ -661,8 +607,6 @@
         title: 'Caixa Luxo Torta Meringue & Doces Finos',
         category: 'caixas',
         badge: 'Edição Especial Presente',
-        price: 135.00,
-        rating: 5.0,
         img: 'https://crisdoces-self.vercel.app/1%20(2).jpeg',
         desc: 'Torta artesanal de merengue tostado combinada com seleção exclusiva de brigadeiros nobres e corações de chocolate branco em caixa luxo com laço de fita.',
         pairing: 'Ideal para o Dia das Mães, almoços em família e presentes de alto impacto.'
@@ -672,8 +616,6 @@
         title: 'Trio de Barras Recheadas "Com Carinho"',
         category: 'especiais',
         badge: 'Sucesso de Vendas',
-        price: 45.00,
-        rating: 4.9,
         img: 'https://crisdoces-self.vercel.app/1%20(3).jpeg',
         desc: 'Coleção com 3 barrinhas de bombom recheadas: Chocolate Amargo com Nozes, Chocolate Branco com Frutas Vermelhas e Chocolate ao Leite em embalagens florais.',
         pairing: 'Excelente para lembranças elegantes e consumo pessoal.'
@@ -683,8 +625,6 @@
         title: 'Escultura Sagrada Família (Chocolate Bronze)',
         category: 'especiais',
         badge: 'Natal & Edição Religiosa',
-        price: 98.00,
-        rating: 5.0,
         img: 'https://crisdoces-self.vercel.app/1%20(4).jpeg',
         desc: 'Escultura rica em detalhes feita em chocolate nobre com acabamento bronze-dourado comestível. Acompanha caixa festiva de presente.',
         pairing: 'Presente memorável para celebrações natalinas, batizados e momentos de fé.'
@@ -694,8 +634,6 @@
         title: 'Bombom Gigante / Ovo Cremosíssimo Recheado',
         category: 'brigadeiros',
         badge: 'Recheio Extra Cremoso',
-        price: 78.00,
-        rating: 4.9,
         img: 'https://crisdoces-self.vercel.app/1%20(5).jpeg',
         desc: 'Casca espessa de chocolate crocante com recheio ultra cremoso de Nutella, creme de cookies e chocolate preto e branco.',
         pairing: 'Ideal para os verdadeiros amantes de recheios fartos e colheradas de pura felicidade.'
@@ -730,10 +668,13 @@
       }
     };
 
-    let cart = [];
     let currentCategory = 'todos';
     let quizState = {};
     let sensoryChartInstance = null;
+
+    // URL base do WhatsApp com mensagem padrão
+    const WHATSAPP_URL = 'https://wa.me/555499699963?text=Gostaria%20de%20fazer%20um%20pedido';
+    const INSTAGRAM_URL = 'https://www.instagram.com/santtodoces?igsi=Z2Z2ZG1lMWlkeXc1';
 
     document.addEventListener('DOMContentLoaded', () => {
       renderCatalog();
@@ -770,19 +711,17 @@
             <div>
               <div class="flex items-center justify-between text-xs text-dourado-dark font-semibold mb-1">
                 <span class="capitalize">${p.category}</span>
-                <span class="flex items-center gap-1"><i class="fa-solid fa-star text-dourado"></i> ${p.rating.toFixed(1)}</span>
               </div>
               <h3 onclick="openProductModal('${p.id}')" class="font-serif text-lg font-bold text-santto-900 group-hover:text-dourado-dark transition cursor-pointer">${p.title}</h3>
               <p class="text-santto-600 text-xs mt-2 line-clamp-2 leading-relaxed">${p.desc}</p>
             </div>
-            <div class="mt-6 pt-4 border-t border-santto-100 flex items-center justify-between">
-              <div>
-                <span class="text-[10px] text-santto-500 block uppercase tracking-wider">Valor</span>
-                <span class="text-lg font-bold text-santto-900 font-serif">R$ ${p.price.toFixed(2).replace('.', ',')}</span>
-              </div>
-              <button onclick="addToCart('${p.title}', ${p.price})" class="bg-santto-900 hover:bg-santto-800 text-dourado-light p-3 rounded-full transition duration-300 shadow-md" title="Adicionar à Sacola">
-                <i class="fa-solid fa-plus"></i>
-              </button>
+            <div class="mt-6 pt-4 border-t border-santto-100 flex items-center justify-between gap-2">
+              <a href="${WHATSAPP_URL}" target="_blank" class="flex-1 bg-santto-900 hover:bg-santto-800 text-dourado-light font-bold py-2.5 px-3 rounded-full transition duration-300 shadow-md text-center text-xs uppercase tracking-wider">
+                Fazer pedido
+              </a>
+              <a href="${INSTAGRAM_URL}" target="_blank" class="bg-santto-100 hover:bg-santto-200 text-santto-800 p-3 rounded-full transition duration-300" title="Ver no Instagram">
+                <i class="fa-brands fa-instagram"></i>
+              </a>
             </div>
           </div>
         </div>
@@ -811,16 +750,10 @@
       document.getElementById('modal-img').src = p.img;
       document.getElementById('modal-badge').innerText = p.badge;
       document.getElementById('modal-title').innerText = p.title;
-      document.getElementById('modal-price').innerText = `R$ ${p.price.toFixed(2).replace('.', ',')}`;
       document.getElementById('modal-desc').innerText = p.desc;
       document.getElementById('modal-pairing').innerText = p.pairing;
-      
-      const addBtn = document.getElementById('modal-add-btn');
-      addBtn.onclick = () => {
-        addToCart(p.title, p.price);
-        closeProductModal();
-      };
 
+      // O botão "Fazer Pedido" no modal já aponta para o WhatsApp padrão
       document.getElementById('product-modal').classList.remove('hidden');
     }
 
@@ -913,9 +846,9 @@
       titleEl.innerText = recProduct.title;
       descEl.innerText = `Recomendação Santto Doces preparada com todo carinho para seu momento! ${recProduct.desc}`;
       
+      // Alterado: botão agora abre WhatsApp diretamente
       addBtn.onclick = () => {
-        addToCart(recProduct.title, recProduct.price);
-        resetQuiz();
+        window.open(WHATSAPP_URL, '_blank');
       };
 
       resultEl.classList.remove('hidden');
@@ -942,104 +875,6 @@
         tempEl.innerText = 'Envio Metropolitano';
         timeEl.innerText = 'Transporte em caixa de proteção especial';
       }
-    }
-
-    function toggleCart() {
-      const drawer = document.getElementById('cart-drawer');
-      drawer.classList.toggle('opacity-0');
-      drawer.classList.toggle('pointer-events-none');
-    }
-
-    function addToCart(title, price) {
-      const existing = cart.find(item => item.title === title);
-      if (existing) {
-        existing.quantity += 1;
-      } else {
-        cart.push({ title, price, quantity: 1 });
-      }
-      updateCartUI();
-      const drawer = document.getElementById('cart-drawer');
-      if (drawer.classList.contains('opacity-0')) {
-        toggleCart();
-      }
-    }
-
-    function removeFromCart(title) {
-      cart = cart.filter(item => item.title !== title);
-      updateCartUI();
-    }
-
-    function updateCartQuantity(title, delta) {
-      const item = cart.find(i => i.title === title);
-      if (item) {
-        item.quantity += delta;
-        if (item.quantity <= 0) {
-          removeFromCart(title);
-        } else {
-          updateCartUI();
-        }
-      }
-    }
-
-    function updateCartUI() {
-      const container = document.getElementById('cart-items');
-      const countBadge = document.getElementById('cart-count');
-      const totalSpan = document.getElementById('cart-total');
-
-      const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-      const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-
-      countBadge.innerText = totalItems;
-      totalSpan.innerText = `R$ ${totalPrice.toFixed(2).replace('.', ',')}`;
-
-      if (cart.length === 0) {
-        container.innerHTML = '<p class="text-xs text-santto-500 text-center py-12">Sua sacola de doces está vazia. Escolha suas delícias no cardápio!</p>';
-        return;
-      }
-
-      container.innerHTML = cart.map(item => `
-        <div class="flex items-center justify-between bg-santto-50 p-3.5 rounded-xl border border-santto-200">
-          <div>
-            <h5 class="text-xs font-bold text-santto-900">${item.title}</h5>
-            <span class="text-[11px] text-dourado-dark font-medium font-serif">R$ ${item.price.toFixed(2).replace('.', ',')} un.</span>
-          </div>
-          <div class="flex items-center gap-3">
-            <div class="flex items-center bg-white border border-santto-300 rounded-lg">
-              <button onclick="updateCartQuantity('${item.title}', -1)" class="px-2 py-0.5 text-santto-700 hover:text-dourado text-xs font-bold">-</button>
-              <span class="px-2 text-xs font-bold text-santto-900">${item.quantity}</span>
-              <button onclick="updateCartQuantity('${item.title}', 1)" class="px-2 py-0.5 text-santto-700 hover:text-dourado text-xs font-bold">+</button>
-            </div>
-            <button onclick="removeFromCart('${item.title}')" class="text-santto-400 hover:text-rosa-dark p-1" title="Remover">
-              <i class="fa-solid fa-trash-can text-xs"></i>
-            </button>
-          </div>
-        </div>
-      `).join('');
-    }
-
-    function checkoutWhatsApp() {
-      if (cart.length === 0) {
-        alert('Sua sacola está vazia! Adicione pelo menos um produto do cardápio.');
-        return;
-      }
-
-      let message = "Olá, Tailise & Cristiano! Gostaria de fazer uma encomenda na Santto Doces:\n\n";
-      cart.forEach(item => {
-        message += `• ${item.quantity}x ${item.title} - R$ ${(item.price * item.quantity).toFixed(2).replace('.', ',')}\n`;
-      });
-
-      const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-      message += `\n*Subtotal dos Doces:* R$ ${total.toFixed(2).replace('.', ',')}`;
-
-      const giftNote = document.getElementById('gift-note').value.trim();
-      if (giftNote) {
-        message += `\n\n*Mensagem para o Cartão:* "${giftNote}"`;
-      }
-
-      message += "\n\nPor favor, confirmem a disponibilidade de data para entrega/retirada!";
-
-      const encoded = encodeURIComponent(message);
-      window.open(`https://wa.me/5500000000000?text=${encoded}`, '_blank');
     }
   </script>
 </body>

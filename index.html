@@ -13,6 +13,8 @@
 
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- PDF.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 
   <script>
     tailwind.config = {
@@ -85,6 +87,22 @@
       .chart-container {
         height: 360px;
       }
+    }
+    /* Estilo para o container do PDF */
+    #pdf-container {
+      overflow-y: auto;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 10px;
+      background: #f9f9f9;
+      border-radius: 16px;
+    }
+    #pdf-container canvas {
+      margin-bottom: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      border-radius: 8px;
     }
   </style>
 </head>
@@ -201,7 +219,7 @@
             <div class="absolute -top-6 -right-4 bg-santto-900 text-white p-3 rounded-2xl shadow-xl hidden sm:block text-center">
               <i class="fa-solid fa-star text-dourado text-sm mb-1"></i>
               <span class="block text-[10px] font-bold uppercase tracking-wider text-dourado-light">Receita Exclusiva</span>
-              <span class="text-xs font-serif italic">Santto Brigadeiro</span>
+              <span class="text-xs font-serif italic">Santto Doces</span>
             </div>
 
           </div>
@@ -584,19 +602,19 @@
     </div>
   </div>
 
-  <!-- Modal do Catálogo PDF -->
+  <!-- Modal do Catálogo com PDF.js (sem iframe, sem botão azul) -->
   <div id="catalog-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-santto-950/70 backdrop-blur-md hidden">
     <div class="bg-white border border-santto-200 rounded-3xl w-full max-w-5xl h-[85vh] p-4 relative shadow-2xl flex flex-col">
       <button onclick="closeCatalogModal()" class="absolute top-4 right-4 text-santto-400 hover:text-santto-900 p-2 z-10 bg-white/90 rounded-full shadow">
         <i class="fa-solid fa-xmark text-xl"></i>
       </button>
 
-      <!-- Conteúdo do PDF em iframe -->
-      <div class="flex-1 w-full rounded-2xl overflow-hidden border border-santto-200 mt-10">
-        <iframe src="https://crisdoces-self.vercel.app/Cat%C3%A1logo%20Santto%20Doces%20at%C3%A9%20Dezembro%2026.pdf" class="w-full h-full" frameborder="0"></iframe>
+      <!-- Container onde o PDF será renderizado -->
+      <div id="pdf-container" class="flex-1 w-full rounded-2xl border border-santto-200 mt-10 overflow-y-auto">
+        <!-- As páginas serão inseridas aqui via JavaScript -->
       </div>
 
-      <!-- Ícone flutuante do WhatsApp no canto inferior direito dentro do modal -->
+      <!-- Ícone flutuante do WhatsApp -->
       <a href="https://wa.me/555499699963?text=Gostaria%20de%20fazer%20um%20pedido" target="_blank" class="absolute bottom-6 right-6 w-14 h-14 bg-emerald-500 hover:bg-emerald-600 text-white rounded-full flex items-center justify-center shadow-2xl transition duration-300 z-20" title="Fazer pedido pelo WhatsApp">
         <i class="fa-brands fa-whatsapp text-3xl"></i>
       </a>
@@ -604,6 +622,9 @@
   </div>
 
   <script>
+    // Configuração do PDF.js
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
     // Dados dos produtos (sem preço, pois valores foram removidos da exibição)
     const products = [
       {
@@ -699,6 +720,7 @@
     // URL base do WhatsApp com mensagem padrão
     const WHATSAPP_URL = 'https://wa.me/555499699963?text=Gostaria%20de%20fazer%20um%20pedido';
     const INSTAGRAM_URL = 'https://www.instagram.com/santtodoces?igsi=Z2Z2ZG1lMWlkeXc1';
+    const CATALOG_PDF_URL = 'https://crisdoces-self.vercel.app/Cat%C3%A1logo%20Santto%20Doces%20at%C3%A9%20Dezembro%2026.pdf';
 
     document.addEventListener('DOMContentLoaded', () => {
       renderCatalog();
@@ -779,13 +801,42 @@
       document.getElementById('product-modal').classList.add('hidden');
     }
 
-    // Funções para o modal do catálogo PDF
+    // Funções para o modal do catálogo PDF com PDF.js
     function openCatalogModal() {
       document.getElementById('catalog-modal').classList.remove('hidden');
+      loadPdfInContainer();
     }
 
     function closeCatalogModal() {
       document.getElementById('catalog-modal').classList.add('hidden');
+      document.getElementById('pdf-container').innerHTML = ''; // limpa para liberar memória
+    }
+
+    async function loadPdfInContainer() {
+      const container = document.getElementById('pdf-container');
+      container.innerHTML = '<p class="text-center text-santto-500 p-8">Carregando catálogo...</p>';
+
+      try {
+        const loadingTask = pdfjsLib.getDocument(CATALOG_PDF_URL);
+        const pdf = await loadingTask.promise;
+        const totalPages = pdf.numPages;
+        container.innerHTML = ''; // limpa a mensagem
+
+        for (let pageNum = 1; pageNum <= totalPages; pageNum++) {
+          const page = await pdf.getPage(pageNum);
+          const viewport = page.getViewport({ scale: 1.2 }); // Ajuste de escala conforme necessário
+          const canvas = document.createElement('canvas');
+          const context = canvas.getContext('2d');
+          canvas.width = viewport.width;
+          canvas.height = viewport.height;
+          canvas.className = 'shadow-md rounded-lg';
+          await page.render({ canvasContext: context, viewport: viewport }).promise;
+          container.appendChild(canvas);
+        }
+      } catch (error) {
+        console.error('Erro ao carregar PDF:', error);
+        container.innerHTML = '<p class="text-center text-rosa-dark p-8">Não foi possível carregar o catálogo. Tente novamente mais tarde.</p>';
+      }
     }
 
     function initSensoryRadarChart() {

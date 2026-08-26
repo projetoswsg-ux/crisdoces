@@ -103,6 +103,9 @@
       margin-bottom: 10px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
       border-radius: 8px;
+      /* Garantir que o canvas ocupe 100% da largura, mas sem distorção */
+      max-width: 100%;
+      height: auto;
     }
   </style>
 </head>
@@ -812,6 +815,9 @@
       document.getElementById('pdf-container').innerHTML = ''; // limpa para liberar memória
     }
 
+    // ============================================================
+    // ⭐ FUNÇÃO ATUALIZADA – PDF OCUPA EXATAMENTE A LARGURA DO CONTAINER
+    // ============================================================
     async function loadPdfInContainer() {
       const container = document.getElementById('pdf-container');
       container.innerHTML = '<p class="text-center text-santto-500 p-8">Carregando catálogo...</p>';
@@ -822,14 +828,34 @@
         const totalPages = pdf.numPages;
         container.innerHTML = ''; // limpa a mensagem
 
+        // Obtém a largura útil do container (descontando o padding de 10px de cada lado)
+        const containerWidth = container.clientWidth - 20; // 20 = padding left + right
+
         for (let pageNum = 1; pageNum <= totalPages; pageNum++) {
           const page = await pdf.getPage(pageNum);
-          const viewport = page.getViewport({ scale: 1.2 }); // Ajuste de escala conforme necessário
+          // Viewport com escala 1 para obter proporções originais
+          const viewportOrig = page.getViewport({ scale: 1 });
+          const origWidth = viewportOrig.width;
+          const origHeight = viewportOrig.height;
+
+          // Calcula a escala para que a largura caiba exatamente no container
+          const scale = containerWidth / origWidth;
+
+          // Cria viewport com a escala calculada
+          const viewport = page.getViewport({ scale });
+
           const canvas = document.createElement('canvas');
           const context = canvas.getContext('2d');
           canvas.width = viewport.width;
           canvas.height = viewport.height;
+
+          // Estilos para ocupar 100% da largura sem distorção
+          canvas.style.display = 'block';
+          canvas.style.margin = '0 auto';
+          canvas.style.maxWidth = '100%';
+          canvas.style.height = 'auto';
           canvas.className = 'shadow-md rounded-lg';
+
           await page.render({ canvasContext: context, viewport: viewport }).promise;
           container.appendChild(canvas);
         }
